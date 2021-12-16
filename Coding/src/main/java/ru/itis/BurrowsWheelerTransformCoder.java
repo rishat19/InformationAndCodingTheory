@@ -58,7 +58,7 @@ public class BurrowsWheelerTransformCoder {
                     // Write code
                     out.write(keyIndex.toString());
                     out.write('\n');
-                    out.write(decodeWithMoveToFront());
+                    out.write(encodeWithMoveToFront());
                     out.write('\n');
                     out.flush();
                     // Clear piece
@@ -82,7 +82,7 @@ public class BurrowsWheelerTransformCoder {
             // Write code
             out.write(keyIndex.toString());
             out.write('\n');
-            out.write(decodeWithMoveToFront());
+            out.write(encodeWithMoveToFront());
             out.flush();
         }
         in.close();
@@ -105,7 +105,7 @@ public class BurrowsWheelerTransformCoder {
         }
     }
 
-    private String decodeWithMoveToFront() {
+    private String encodeWithMoveToFront() {
         LinkedList<Character> list = new LinkedList<>(alphabet);
         Collections.sort(list);
         StringBuilder code = new StringBuilder();
@@ -141,7 +141,7 @@ public class BurrowsWheelerTransformCoder {
                 alphabet.add('\n');
             } else {
                 keyIndex = Integer.parseInt(in.readLine());
-                encodeWithMoveToFront(in.readLine());
+                decodeWithMoveToFront(in.readLine());
                 ArrayList<Character> sortedAlphabet = new ArrayList<>(alphabet);
                 sortedAlphabet.sort(Character::compareTo);
                 HashMap<Character, Integer> indices = new HashMap<>();
@@ -179,7 +179,7 @@ public class BurrowsWheelerTransformCoder {
         out.close();
     }
 
-    private void encodeWithMoveToFront(String code) {
+    private void decodeWithMoveToFront(String code) {
         LinkedList<Character> list = new LinkedList<>(alphabet);
         Collections.sort(list);
         int blockSize = Integer.toString(alphabet.size() - 1, 2).length();
